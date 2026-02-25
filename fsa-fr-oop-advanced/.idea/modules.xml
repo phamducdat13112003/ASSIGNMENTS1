@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/demo/assignment01/assignment01.iml" filepath="$PROJECT_DIR$/demo/assignment01/assignment01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo-mini/assignment02/assignment02.iml" filepath="$PROJECT_DIR$/demo-mini/assignment02/assignment02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/assignment03/assignment03.iml" filepath="$PROJECT_DIR$/demo/assignment03/assignment03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/assignment02/assignment3.iml" filepath="$PROJECT_DIR$/demo/assignment02/assignment3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo-mini/assignment03/assignment4.iml" filepath="$PROJECT_DIR$/demo-mini/assignment03/assignment4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/fsa-fr-oop-advanced.iml" filepath="$PROJECT_DIR$/.idea/fsa-fr-oop-advanced.iml" />
+    </modules>
+  </component>
+</project>
