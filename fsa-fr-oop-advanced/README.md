@@ -48,14 +48,12 @@ _Action:_ Complete **Assignment 01** in [ASSIGNMENTS.md](./ASSIGNMENTS.md).
   - Payment (xử lý thanh toán).
   - Stock (cập nhật tồn kho).
   - Notification (email, SMS).
-  - Logging, Analytics (hoặc tách riêng).
-- **OrderService** chỉ điều phối các thành phần trên (orchestrator), không chứa logic chi tiết của từng việc.
+- **OrderService** chỉ điều phối các thành phần trên, không chứa logic chi tiết của từng việc.
 
 **Vấn đề 2 – Discount if-else (OCP)**
 
 - **Hiện tại:** Trong `createOrder()` có if-else theo category (ELECTRONICS, CLOTHING, FOOD) để giảm giá.
-- **Cần làm:** Áp dụng Strategy (hoặc Chain of Responsibility):
-  - Interface kiểu `DiscountStrategy` hoặc `DiscountRule` (nhận product/price, trả về giá sau giảm).
+- **Cần làm:**
   - Mỗi rule (Electronics, Clothing, Black Friday 20%, v.v.) là một class implement interface đó.
   - Thêm rule mới = thêm class mới, không sửa OrderService hay một “discount master” class (mở rộng, đóng sửa – OCP).
 
@@ -63,26 +61,23 @@ _Action:_ Complete **Assignment 01** in [ASSIGNMENTS.md](./ASSIGNMENTS.md).
 
 - **Hiện tại:** Trong `createOrder()` có if-else theo paymentMethod (CREDIT_CARD, PAYPAL, BANK_TRANSFER) để tính phí và “process payment”.
 - **Cần làm:** Tách payment thành Strategy (hoặc tương tự):
-  - Interface kiểu `PaymentProcessor` (hoặc `PaymentHandler`) với method xử lý thanh toán (và có thể tính phí).
-  - Mỗi phương thức (CreditCard, PayPal, BankTransfer, sau này Crypto) là một class implement.
+  - Interface kiểu `PaymentProcessor` với method xử lý thanh toán (và có thể tính phí).
+  - Mỗi phương thức (CreditCard, PayPal, BankTransfer) là một class implement.
   - Thêm phương thức mới = thêm class mới, không sửa logic bên trong `createOrder()` (OCP).
 
 **Vấn đề 4 – Notification rải rác (SRP, DIP)**
 
-- **Hiện tại:** Gửi email/SMS/log nằm trực tiếp trong `createOrder()`, `cancelOrder()`, `shipOrder()` (System.out.println giả lập).
+- **Hiện tại:** Gửi email/SMS nằm trực tiếp trong `createOrder()`, `cancelOrder()`, `shipOrder()` .
 - **Cần làm:**
-  - Tách Notification (và có thể Logging) thành service/interface riêng.
-  - Order flow chỉ gọi kiểu: `notificationService.notifyOrderConfirmed(...)`, `notificationService.notifyShipped(...)`, v.v.
+  - Tách Notification thành service/interface riêng.
   - Đổi provider (email/SMS) = đổi implementation của interface, không sửa OrderService (DIP: phụ thuộc abstraction).
 
 **Vấn đề 5 – Object[] (type safety, domain modeling)**
-
 - **Hiện tại:** `orders`, `products`, `orderItems` dùng `Object[]` (index 0 = id, 1 = name, …), dễ lỗi và khó đọc.
 - **Cần làm:** Đưa vào domain model rõ ràng:
   - Class **Product** (id, name, price, stock, category).
   - Class **OrderItem** (productId, productName, price hoặc tham chiếu Product).
   - Class **Order** (orderId, customerId, items, total, status, shippingAddress).
-  - Dùng `List<Product>`, `List<Order>`, `List<OrderItem>` thay cho `List<Object[]>`.
 
 ### **DAY 3: WORKSHOP**
 
